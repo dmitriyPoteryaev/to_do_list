@@ -1,0 +1,28 @@
+.Task {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 20px;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  background-color: black;
+  min-height: 60px;
+  border-radius: 5px;
+  text-align: center;
+}
+.Taskinput {
+  width:70%;
+  margin: 20px 20px;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  background-color: black;
+  min-height: 60px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.remBut {
+  font-weight: 800;
+  background-color: red;
+}

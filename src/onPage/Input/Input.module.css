@@ -1,0 +1,20 @@
+.input {
+  height: 50px;
+  width: 200px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.Usual_input {
+  border: grey 3px solid;
+  border-radius: 3px;
+  width: 250px;
+  height: 20px;
+  border-radius: 5px;
+}
+.Active_red_input {
+  border: red 3px solid;
+  border-radius: 3px;
+  width: 250px;
+  height: 20px;
+  border-radius: 5px;
+}

@@ -1,0 +1,14 @@
+.Tasks-enter {
+  transform: translateX(-350px);
+}
+.Tasks-enter-active {
+  transform: translateX(0px);
+  transition: all 500ms ease-in;
+}
+.Tasks-exit {
+  opacity: 1;
+}
+.Tasks-exit-active {
+  transform: translateX(-150px);
+  transition: all 500ms ease-in;
+}

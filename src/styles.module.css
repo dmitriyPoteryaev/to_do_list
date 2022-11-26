@@ -1,0 +1,47 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.Error {
+  text-align: center;
+  margin-top: 200px;
+}
+.AddPlusSort {
+  display: flex;
+  justify-content: space-between;
+}
+.AddBut {
+  color: white;
+  height: 40px;
+  background-color: black;
+  font-weight: 800;
+  border-radius: 3px;
+}
+
+.Task {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 20px;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  background-color: black;
+  min-height: 60px;
+  border-radius: 5px;
+  text-align: center;
+}
+.Task-enter {
+  opacity: 0;
+}
+.Task-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.Task-exit {
+  opacity: 1;
+}
+.Task-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
