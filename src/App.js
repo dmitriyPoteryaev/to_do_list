@@ -44,15 +44,17 @@ export default function App() {
     const taskObj = {
       id: Date.now(),
       text: task,
-      active: false
+      active: false,
     };
 
-    taskObj.text.trim()
-      ? setContent([...contents, taskObj])
-      : (setvisAttention(true),
-        setTimeout(() => {
-          setvisAttention(false);
-        }, 3000));
+    if (taskObj.text.trim()) {
+      setContent([...contents, taskObj]);
+    } else {
+      setvisAttention(true);
+      setTimeout(() => {
+        setvisAttention(false);
+      }, 3000);
+    }
   };
 
   // функиця , связанная с удалением конкретной задачи по id

@@ -15,7 +15,8 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-transition-group": "4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "react-transition-group": "^4.4.5"
   }
 }
