@@ -36,7 +36,7 @@
 }
 
 @media (min-width: 0px) and (max-width: 900px) {
-  .App__Content {
+  .Content {
     width: 100%;
   }
 }
