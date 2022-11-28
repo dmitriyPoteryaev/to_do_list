@@ -9,8 +9,9 @@ const Sorting = ({ filterSelector, setfilterSelector }) => {
       defaultName="Сортировка по:"
       options={[
         { name: "Все", value: "all" },
-        { name: "Выполненные", value: "true" },
-        { name: "Невыполненные", value: "" }
+        { name: "Выполненные", value: "Выполненна" },
+        { name: "Невыполненные", value: "Невыполненна" },
+        { name: "Просрочено", value: "Просрочено" },
       ]}
     />
   );

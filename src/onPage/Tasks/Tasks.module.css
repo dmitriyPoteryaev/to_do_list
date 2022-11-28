@@ -1,40 +1,50 @@
-.Task {
+.Task, .TaskOverdue  {
+  font-family: "PT Sans", sans-serif;
   display: flex;
   flex-direction: column;
-  margin: 20px 20px;
+  margin: 10px 0px 10px 0px;
   font-size: 20px;
   font-weight: 800;
   color: white;
-  background-color: white;
+  background-color: #64ff8a;
   min-height: 60px;
-  border-radius: 5px;
   text-align: center;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
+  /* Границы для тасков */
+  border: 3px solid black;
+  border-radius: 5px;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);
+
 
 }
+.TaskOverdue{
+  background-color: #ff4040;
+  
+}
 .Task__files {
+  font-family: "PT Sans", sans-serif;
   width: 50%;
   margin: 20px 0px 20px 20px;
+  padding: 0px;
   font-size: 20px;
   font-weight: 800;
   color: black;
   background-color: white;
   height: 30px;
   border-radius: 5px;
-  text-align: center;
-}
-.Task__date {
-  font-weight: 400;
 }
 
+.Task__Title,.Task__checkbox {
+ color: black;
+}
+.Task__label{
+  width:100%;
+}
 
 .remBut {
   border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
   width: 100px;
   cursor: pointer;
   border-width: 1px;
-  padding: 1px 7px 2px;
   text-rendering: auto;
   font: 400 16px system-ui;
   border-radius: 4px;
@@ -48,4 +58,8 @@
 }
 .Task__date {
   color: black;
+  font-weight: 400;
 }
+
+
+

@@ -1,19 +1,14 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import * as InputJson from "../../JSON/InputJson.json";
-import { useSelector, useDispatch } from "react-redux";
-import "firebase/compat/firestore";
+import { useDispatch } from "react-redux";
 import { ContentServies } from "../../API/ContentServies.js";
 import classes from "./Form.module.css";
 import ModalInput from "../../components/UI/ModalInput/ModalInput";
-import {useForm} from "react-hook-form";
-
-import {setNewTask} from "../../Redux/reducers/TasksReducer"
+import { useForm } from "react-hook-form";
 
 import { GetTask } from "../../Redux/reducers/GetTask";
 
-const Form = ({setvisAttention}) => {
-  // ВСЯ ЛОГИКА ПО УДАЛЕНИЮ ИЛИ ДОБАВЛЕНИЮ И Т.Д НОВОЙ ЗАДАЧИ
-  const [newTask, setNewTasks] = useState("");
+const Form = () => {
 
   const [TaskInfo, setTaskInfo] = useState({
     date: "",
@@ -21,57 +16,37 @@ const Form = ({setvisAttention}) => {
     description: "",
   });
 
+  const dispatch = useDispatch();
+   //TaskInfo.date.split('').some(elem=>elem==='_')&&
 
-  const dispatch= useDispatch();
+  console.log(TaskInfo.date.split('').some(elem=>elem==='_')||!TaskInfo.task.trim())
 
+  // добавление новой задачи
 
-   // добавление новой задачи
+  const { register, handleSubmit } = useForm();
 
- // const AddTask = async (task) => {
-  // const taskObj = {
-  //   Date: TaskInfo.Date,
-  //   Desctiption: TaskInfo.Desctiption,
-  //   Title: TaskInfo.Title,
-  //   active: false,
-  // };
+  const onSubmit = async (data) => {
+    const taskObj = {
+      Date: data.date.replace(/[^0-9,".",":"," "]/g, ""),
+      Desctiption: data.description,
+      Title: data.task,
+      active: "Невыполненна",
+    };
 
+    await ContentServies.addTask(taskObj);
 
- //};
+    dispatch(GetTask());
 
-const {register, handleSubmit} = useForm();
-
-const onSubmit = async (data)=>{
-
- //const storageRef = await  ContentServies.addTask();
- const taskObj = {
-    Date: data.date,
-     Desctiption: data.description,
-     Title: data.task,
-     active: false,
+    setTaskInfo({
+      date: "",
+      task: "",
+      description: "",
+    });
   };
-  //const fileRef = storageRef.child(data.file[0].name);
-  //fileRef.put(data.file[0]);
-  console.log(taskObj)
-
- await ContentServies.addTask(taskObj);
-
- dispatch(GetTask())
-
- setTaskInfo({
-
-  date: "",
-  task: "",
-  description: "",
-
- })
-
-
-}
-
 
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-      <span className={classes.DataEntry}>Добавить новую задачу</span>
+      <span className={classes.form__title}>Добавить новую задачу</span>
       {InputJson.default.map((value) => (
         <ModalInput
           value={value}
@@ -87,9 +62,7 @@ const onSubmit = async (data)=>{
         ></ModalInput>
       ))}
 
-      <button className={classes.AddBut} >
-        Добавить задачу
-      </button>
+      <button className={classes.form__btn}>Добавить задачу</button>
     </form>
   );
 };

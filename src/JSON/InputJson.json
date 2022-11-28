@@ -19,12 +19,7 @@
         "type":"text",
         "placeholder": "Опишите задачу",
         "name": "description"
-    },
-    {
-      "nameInput": "Файл",
-      "type":"file",
-      "name": "file"
-  }
+    }
 
 
   ]

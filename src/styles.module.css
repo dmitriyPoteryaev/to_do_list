@@ -1,18 +1,42 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .App {
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
- 
- 
+  align-items: center;
 }
-.Tasks{
+.Content {
+  width: 70%;
+}
 
-  max-width: 100%; 
+.Error {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.Task-enter {
+  opacity: 0;
+}
+.Task-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.Task-exit {
+  opacity: 1;
+}
+.Task-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+@media (min-width: 0px) and (max-width: 900px) {
+  .App__Content {
+    width: 100%;
+  }
 }

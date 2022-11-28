@@ -12,11 +12,11 @@ const Select = ({
       value={filterSelector}
       onChange={(event) => setfilterSelector(event.target.value)}
     >
-      <option disabled value="all">
+      <option    className={classes.option} disabled value="all">
         {defaultName}
       </option>
       {options.map((option) => (
-        <option key={option.value} value={option.value}>
+        <option    className={classes.option} key={option.value} value={option.value}>
           {option.name}
         </option>
       ))}

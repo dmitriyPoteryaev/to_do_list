@@ -1,7 +1,9 @@
-.select {
+.select, .option {
   width: 160px;
-  height: 26px;
-  margin-right: 0px;
-  margin-left: 100px;
+  height: 40px;
   align-self: baseline;
+  border-radius: 2%;
+
+  font-size: 15px;
+  font-weight: 800;
 }

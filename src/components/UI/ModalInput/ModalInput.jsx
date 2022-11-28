@@ -25,7 +25,7 @@ function ModalInput({ value, onchange, inputValue,register }) {
           <span className={classes.commonInp__nameInput}>
           {value.nameInput}
           </span>
-          <InputMask mask="99 99 99" value={inputValue}  {...register(value.name, { required: true })}  onChange={(event) => onchange(event.target.value)}>
+          <InputMask mask="Год-9999.Месяц-99.День-99 Время - 99:99" value={inputValue}  {...register(value.name, { required: true })}  onChange={(event) => onchange(event.target.value)}>
             {() => <input placeholder={value.placeholder}  name={value.name}   className={classes.commonInp__input} type={value.type}/>}
           </InputMask>
         </label>
