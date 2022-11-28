@@ -1,28 +1,51 @@
 .Task {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 20px 20px;
   font-size: 20px;
   font-weight: 800;
   color: white;
-  background-color: black;
+  background-color: white;
   min-height: 60px;
+  border-radius: 5px;
+  text-align: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+
+}
+.Task__files {
+  width: 50%;
+  margin: 20px 0px 20px 20px;
+  font-size: 20px;
+  font-weight: 800;
+  color: black;
+  background-color: white;
+  height: 30px;
   border-radius: 5px;
   text-align: center;
 }
-.Taskinput {
-  width:70%;
-  margin: 20px 20px;
-  font-size: 20px;
-  font-weight: 800;
-  color: white;
-  background-color: black;
-  min-height: 60px;
-  border-radius: 5px;
-  text-align: center;
+.Task__date {
+  font-weight: 400;
 }
 
+
 .remBut {
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  width: 100px;
+  cursor: pointer;
+  border-width: 1px;
+  padding: 1px 7px 2px;
+  text-rendering: auto;
+  font: 400 16px system-ui;
+  border-radius: 4px;
   font-weight: 800;
-  background-color: red;
+  height: 30px;
+
+  background-color:#ff4c5b;
+}
+.Task__title {
+  color: black;
+}
+.Task__date {
+  color: black;
 }

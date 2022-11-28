@@ -2,7 +2,7 @@ import React from "react";
 import Attention from "../Attention/Attention";
 import classes from "./Input.module.css";
 
-const Input = ({ setNewTasks, visAttention }) => {
+const Input = ({ setNewTasks,newTask, visAttention }) => {
   return (
     <label id='newTask'  className={[classes.input].join("")}>
       
@@ -14,12 +14,15 @@ const Input = ({ setNewTasks, visAttention }) => {
             : [classes.Usual_input].join("")
         }
         type="text"
+        value={newTask}
         placeholder="Введите задачу.."
         onChange={(event) => setNewTasks(event.target.value)}
-      />
+      /> 
       {/* функциональный компонент Attention? отвечающий за предупреждение о пустой строке в инпуте  */}
       <Attention visAttention={visAttention} />
-    </label>
+      </label>
+
+      
   );
 };
 
