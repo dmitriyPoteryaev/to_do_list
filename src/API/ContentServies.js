@@ -1,5 +1,8 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+ import {getStorage} from  "firebase/storage";
+ import {ref, uploadBytes, listAll,getDownloadURL} from  "firebase/storage";
+
 
 //Initialize Firebase
 const app = firebase.initializeApp({
@@ -16,6 +19,8 @@ const db = firebase.firestore();
 
 export class ContentServies {
   // всё для firebase
+
+  
 
   static async changeValue(id, cur_value) {
     db.collection("messages").doc(id).update({
@@ -37,13 +42,28 @@ export class ContentServies {
     db.collection("messages").add(taskObj);
   }
 
-  static async getApp() {
+  static  getApp() {
+    // work with storage
+
+    const storage  =  getStorage(app);
   
-    return app;
+    return storage
+   
   }
 
   static async GetQuery() {
     const response = await db.collection("messages").get();
+
+    return response;
+  }
+
+  static async GetStorage() {
+
+    const fileListRef = ref(ContentServies.getApp())
+
+   
+    const response = await listAll(fileListRef);
+
 
     return response;
   }

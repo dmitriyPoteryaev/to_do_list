@@ -31,6 +31,7 @@ const Form = () => {
       Desctiption: data.description,
       Title: data.task,
       active: "Невыполненна",
+      id_file: Date.now(),
     };
 
     await ContentServies.addTask(taskObj);

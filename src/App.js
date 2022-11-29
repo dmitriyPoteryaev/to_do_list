@@ -13,12 +13,16 @@ import Form from "./components/Form/Form";
 import { setDataTasks } from "./Redux/reducers/TasksReducer.js";
 import  Loader  from "./components/UI/Loader/Loader";
 
+import {ref} from  "firebase/storage";
+
 export default function App() {
   const dispatch = useDispatch();
 
   const dataTasks  = useSelector((state) => state.tasks.dataTasks);
   const error = useSelector((state) => state.tasks.error);
   const loading = useSelector((state) => state.tasks.isLoading);
+
+
 
   // хук useState для отслеживания изменений всех задач
   // хук useState для отслеживания того , что написали в инпуте
@@ -42,6 +46,16 @@ export default function App() {
   useEffect(() => {
     dispatch(GetTask());
   }, []);
+ 
+
+
+
+   // useEffect(() => {
+   //   listAll(fileListRef).
+    //  then((res)=>res.items.forEach((item)=>getDownloadURL(item).
+    //  then(url=>setFileList((prev)=>[...prev,{'url':url,'name':item._location.path_}]))))
+   // }, []);
+  
 
   // функиця , связанная с удалением конкретной задачи по id
   const removeTask = async (id) => {
