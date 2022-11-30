@@ -31,23 +31,27 @@ const Form = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    const taskObj = {
-      Date: data.date,
-      Desctiption: data.description,
-      Title: data.task,
-      active: "Невыполненна",
-      id_file: Date.now(),
-    };
+    if (Object.values(TaskInfo).some((elem) => !elem.trim())) {
+      alert("Введите данные");
+    } else {
+      const taskObj = {
+        Date: data.date,
+        Desctiption: data.description,
+        Title: data.task,
+        active: "Невыполненна",
+        id_file: Date.now(),
+      };
 
-    await ContentServies.addTask(taskObj);
+      await ContentServies.addTask(taskObj);
 
-    dispatch(GetTaskStorage());
+      dispatch(GetTaskStorage());
 
-    setTaskInfo({
-      date: "",
-      task: "",
-      description: "",
-    });
+      setTaskInfo({
+        date: "",
+        task: "",
+        description: "",
+      });
+    }
   };
 
   return (
