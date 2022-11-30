@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { getStorage,deleteObject } from "firebase/storage";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { getStorage, deleteObject } from "firebase/storage";
+import { ref, listAll } from "firebase/storage";
 
 //Initialize Firebase
 const app = firebase.initializeApp({
@@ -19,40 +19,60 @@ const db = firebase.firestore();
 export class ContentServies {
   // всё для firebase
 
+  /**
+   *Функция предназначена для изменения описания конкретной таски в БД firebase
+   * @param {string} id  уникальный id конкретной таски в БД firebase
+   * @param {string} cur_value  новое описание конкретной таски в БД firebase
+   */
   static async changeValue(id, cur_value) {
     db.collection("messages").doc(id).update({
       Desctiption: cur_value,
     });
   }
-
+  /**
+   *Функция предназначена для удаления конкретной таски в БД firebase
+   * @param {string} id  уникальный id конкретной таски в БД firebase
+   */
   static async removeTask(id) {
     db.collection("messages").doc(id).delete();
   }
-
+  /**
+   *Функция предназначена для изменения статуса конкретной таски в БД firebase
+   * @param {string} id  уникальный id конкретной таски в БД firebase
+   *  @param {string} status   новый статус конкретной таски в БД firebase
+   */
   static async changeStatus(id, status) {
     db.collection("messages").doc(id).update({
       active: status,
     });
   }
-
+  /**
+   *Функция предназначена для добавления таски в БД firebase
+   * @param {object} taskObj  объект с полным описанием добавленной таски
+   */
   static async addTask(taskObj) {
     db.collection("messages").add(taskObj);
   }
+  // WORK WITH STORAGE
 
   static getApp() {
-    // work with storage
-
     const storage = getStorage(app);
 
     return storage;
   }
-
-  static async GetQuery() {
+  /**
+   *Функция предназначена для получения всех тасок из firebase
+   * @return {object} response
+   */
+  static async GetTask() {
     const response = await db.collection("messages").get();
 
     return response;
   }
-
+  /**
+   *Функция предназначена для получения всех тасок из firebase
+   * @return  {object} response
+   */
   static async GetStorage() {
     const fileListRef = ref(ContentServies.getApp());
 
@@ -60,9 +80,11 @@ export class ContentServies {
 
     return response;
   }
-  static async DeleteFile(obj) { 
-       deleteObject(obj);
-
-   
+  /**
+   *Функция предназначена для удаления конкретного файла из storage firebase
+   * @param {object} obj
+   */
+  static async DeleteFile(obj) {
+    deleteObject(obj);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../../style/AnimationTask/Task.css";
 import classes from "./Tasks.module.css";
 
@@ -18,6 +18,9 @@ import { setDataTasks } from "../../Redux/reducers/TasksReducer";
 import Task from "../../components/UI/Task/Task";
 import Loader from "../../components/UI/Loader/Loader";
 
+/**
+ *Функциональный компонент , который предназначен для отображения всех тасок
+ */
 const Tasks = ({ filterSelector }) => {
   const loading = useSelector((state) => state.tasks.isLoading);
   const error = useSelector((state) => state.tasks.error);
@@ -25,6 +28,9 @@ const Tasks = ({ filterSelector }) => {
 
   const dispatch = useDispatch();
 
+  /**
+   *@param {Array} tasks уже осортированный массив тасок
+   */
   const tasks = useSorting(
     dataTasks.map((elem) => {
       return { ...elem, overdue: CompareDate(elem.Date) };
@@ -34,7 +40,10 @@ const Tasks = ({ filterSelector }) => {
 
   // ВСЯ ЛОГИКА СВЯЗАННАЯ С ЗАДАЧАМИ
 
-  //   удалить таску
+  /**
+   * Функция , которая удаляет конкретную таску и на фронте и на бэке
+   * @param {string} id уникальный id таски
+   */
   const removeTask = async (id) => {
     try {
       await ContentServies.removeTask(id);
@@ -45,7 +54,10 @@ const Tasks = ({ filterSelector }) => {
     }
   };
 
-  //  функиця , связанная с изменением статуса задачи по id
+  /**
+   * функиця , связанная с изменением статуса задачи по id и на фронте , и на бэке
+   * @param {string} id уникальный id таски
+   */
   const changeStatus = async (id) => {
     let cur_status = dataTasks.find((elem) => elem.id === id).active;
 
@@ -71,7 +83,11 @@ const Tasks = ({ filterSelector }) => {
     }
   };
 
-  //  функиця , связанная с изменением конкретной задачи
+  /**
+   *  функиця , связанная с изменением описания конкретной задачи по id и на фронте , и на бэке
+   * @param {string} id уникальный id таски
+   *  @param {string} cur_value значение , на которое нужно поменять описание
+   */
   const changeValue = async (id, cur_value) => {
     try {
       await ContentServies.changeValue(id, cur_value);
@@ -95,7 +111,7 @@ const Tasks = ({ filterSelector }) => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <h1>{error}</h1>
+        <h1 className={classes.Error}>{error}</h1>
       ) : tasks.length !== 0 ? (
         <TransitionGroup>
           {tasks.map((task) => (

@@ -5,10 +5,16 @@ import { ContentServies } from "../../API/ContentServies.js";
 import classes from "./Form.module.css";
 import ModalInput from "../../components/UI/ModalInput/ModalInput";
 import { useForm } from "react-hook-form";
+import { GetTaskStorage } from "../../Redux/reducers/GetTaskStorage";
 
-import { GetTask } from "../../Redux/reducers/GetTask";
+/**
+ *  Функциональный компонент для отображения отображения формы на странице
+ */
 
 const Form = () => {
+  /**
+   *  хук, для измнения состояния по значениям инпутов
+   */
   const [TaskInfo, setTaskInfo] = useState({
     date: "",
     task: "",
@@ -16,9 +22,11 @@ const Form = () => {
   });
 
   const dispatch = useDispatch();
-  //TaskInfo.date.split('').some(elem=>elem==='_')&&
 
-  // добавление новой задачи
+  /**
+   *  функиця , связанная с добавление новой задачи
+   * @param {object} data объект с данными по новой таске
+   */
 
   const { register, handleSubmit } = useForm();
 
@@ -33,7 +41,7 @@ const Form = () => {
 
     await ContentServies.addTask(taskObj);
 
-    dispatch(GetTask());
+    dispatch(GetTaskStorage());
 
     setTaskInfo({
       date: "",

@@ -1,0 +1,9 @@
+.ToDoList {
+    width: 70%;
+  }
+  @media (min-width: 0px) and (max-width: 900px) {
+    .ToDoList {
+      width: 100%;
+    }
+  }
+  

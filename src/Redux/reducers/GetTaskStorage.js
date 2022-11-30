@@ -1,20 +1,24 @@
-import { setDataTasks } from "../reducers/TasksReducer";
-import { setDataStorage } from "../reducers/TasksReducer";
-import { setErrorTasks } from "../reducers/TasksReducer";
-import { setisLoadingTasks } from "../reducers/TasksReducer";
+import { setDataTasks } from "./TasksReducer";
+import { setDataStorage } from "./TasksReducer";
+import { setErrorTasks } from "./TasksReducer";
+import { setisLoadingTasks } from "./TasksReducer";
 import { ContentServies } from "../../API/ContentServies";
 
-import { getDownloadURL, contentType } from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
 
-export const GetTask = () => {
+
+ /**
+   *Функция предназначена для работы со всеми глобалными состояниями в проекте:error,dataTasks,storage,isLoading
+   */
+export const GetTaskStorage = () => {
   return async function (dispatch) {
     try {
       const res = await Promise.all([
-        ContentServies.GetQuery(),
+        ContentServies.GetTask(),
         ContentServies.GetStorage(),
       ]);
 
-      const urls = await Promise.all(
+      const infoStorage = await Promise.all(
         res[1].items.map(async (item) => {
           return {
             url: await getDownloadURL(item),
@@ -28,7 +32,7 @@ export const GetTask = () => {
       });
 
       dispatch(setDataTasks(tasks));
-      dispatch(setDataStorage(urls));
+      dispatch(setDataStorage(infoStorage));
     } catch (e) {
       dispatch(setErrorTasks(e.message));
     } finally {

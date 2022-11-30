@@ -1,7 +1,10 @@
 import React from "react";
 import classes from "./ModalInput.module.css";
-import InputMask from "react-input-mask";
 
+  /**
+ *Переиспользуемый функциональный компонент, который можно использовать для отображеня всех инпутов в форме
+  .Все атрибуты для отображения инпутов имеются в папке JSON в json-файле InputJson
+ */
 function ModalInput({ value, onchange, inputValue, register }) {
   return (
     <div className={classes.commonInp}>

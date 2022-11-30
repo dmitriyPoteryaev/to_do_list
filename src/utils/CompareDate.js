@@ -1,3 +1,8 @@
+/**
+ *Функция предназначена для сравнения текущей даты и даты завершения таски .
+ * @param  {string} DateTask Крайний срок, когда нужно завершить такску
+ *  @return {boolean} Больше или меньше крайний срок сегодняшней даты
+ */
 export function CompareDate(DateTask) {
   let cur_time = new Date();
 

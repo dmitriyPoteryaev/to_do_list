@@ -1,26 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./Task.module.css";
 import { ContentServies } from "../../../API/ContentServies.js";
 import { ref, uploadBytes } from "firebase/storage";
 import { setDataStorage } from "../../../Redux/reducers/TasksReducer";
-
 import { useSelector, useDispatch } from "react-redux";
-
-import { GetTask } from "../../../Redux/reducers/GetTask";
+import { GetTaskStorage } from "../../../Redux/reducers/GetTaskStorage"
+;
 
 const Task = ({ value, removeTask, changeStatus, changeValue }) => {
+   /**
+ *данный хук предназначен для отправки на БД firebase конкретного файла
+ */
   const [fileUpload, setImageFile] = useState(null);
 
+ /**
+ *данный хук предназначен для изменения конкретного описания в конкртной таске
+ */
   const [Value, setValue] = useState({
     curValue: "",
     id: "",
+    status: false,
   });
 
   const storage = useSelector((state) => state.tasks.storage);
 
   const dispatch = useDispatch();
 
-  // загрузить файл
+  /**
+ *Функция предназначена для загрузки файла на БД firebase
+ * @param  {string} id уникальный id таски. Данный id будет присваиваться в качетве названия файлу, чтобы
+ * по данному названию можно было прикрепить , к той же таске , у которой имеется такой же id
+ */
   async function Unloadfile(id) {
     if (fileUpload === null) {
       return;
@@ -35,8 +45,11 @@ const Task = ({ value, removeTask, changeStatus, changeValue }) => {
     }
   }
 
-  // удалить задачу
-
+   /**
+ *Функция предназначена для удаления файла из БД firebase
+ * @param  {string} id уникальный id таски. Поскольку уникальный id таски и название файла совпадают, то можно удалить файл
+ * по id таски
+ */
   async function DeleteFile(id) {
     if (storage.some((elem) => elem.name == id)) {
       const fileRef = ref(ContentServies.getApp(), `${id}`);
@@ -76,11 +89,22 @@ const Task = ({ value, removeTask, changeStatus, changeValue }) => {
 
         <label id="value" className={classes.Task__label}>
           <input
-            value={Value.curValue.trim() ? Value.curValue : value.Desctiption}
+            value={Value.status ? Value.curValue : value.Desctiption}
             id="value"
             className={classes.Task__files}
             onChange={(event) =>
-              setValue({ curValue: event.target.value, id: value.id })
+              setValue({
+                curValue: event.target.value,
+                id: value.id,
+                status: true,
+              })
+            }
+            onClick={(event) =>
+              setValue({
+                curValue: event.target.value,
+                id: value.id,
+                status: true,
+              })
             }
           />
         </label>
@@ -94,7 +118,7 @@ const Task = ({ value, removeTask, changeStatus, changeValue }) => {
           remove
         </button>
         <button
-          disabled={!Value.curValue.trim()}
+          disabled={Value.id !== value.id}
           className={[classes.btn, classes.change].join(" ")}
           onClick={() => {
             changeValue(value.id, Value.curValue);
@@ -104,7 +128,7 @@ const Task = ({ value, removeTask, changeStatus, changeValue }) => {
             });
           }}
         >
-          chahnge
+          change
         </button>
       </div>
       {/* 3 строка */}
@@ -136,7 +160,7 @@ const Task = ({ value, removeTask, changeStatus, changeValue }) => {
           <button
             className={[classes.btn, classes.unload].join(" ")}
             onClick={() =>
-              Unloadfile(value.id_file).then(() => dispatch(GetTask()))
+              Unloadfile(value.id_file).then(() => dispatch(GetTaskStorage()))
             }
           >
             unload
