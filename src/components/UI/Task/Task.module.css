@@ -2,12 +2,13 @@
   font-family: "PT Sans", sans-serif;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   margin: 10px 0px 10px 0px;
   font-size: 20px;
   font-weight: 800;
   color: white;
   background-color: #64ff8a;
-  min-height: 60px;
+  height: 300px;
   text-align: center;
   /* Границы для тасков */
   border: 3px solid black;
@@ -20,6 +21,8 @@
   background-color: #ff4040;
   
 }
+
+
 .Task__files {
   font-family: "PT Sans", sans-serif;
   width: 50%;
@@ -40,7 +43,7 @@
   width:100%;
 }
 
-.remBut {
+.btn {
   border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
   width: 100px;
   cursor: pointer;
@@ -50,9 +53,21 @@
   border-radius: 4px;
   font-weight: 800;
   height: 30px;
+  margin:2px;
+
+}
+.rem{
 
   background-color:#ff4c5b;
 }
+.change{
+  background-color: #0084cd;
+}
+.unload{
+
+  background-color: #fbec5d;
+}
+
 .Task__title {
   color: black;
 }
@@ -60,6 +75,10 @@
   color: black;
   font-weight: 400;
 }
-
+@media (min-width: 0px) and (max-width: 350px) {
+  .Task, .TaskOverdue  {
+    height: 500px;
+  }
+}
 
 

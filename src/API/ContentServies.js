@@ -1,8 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
- import {getStorage} from  "firebase/storage";
- import {ref, uploadBytes, listAll,getDownloadURL} from  "firebase/storage";
-
+import { getStorage,deleteObject } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 
 //Initialize Firebase
 const app = firebase.initializeApp({
@@ -19,8 +18,6 @@ const db = firebase.firestore();
 
 export class ContentServies {
   // всё для firebase
-
-  
 
   static async changeValue(id, cur_value) {
     db.collection("messages").doc(id).update({
@@ -42,13 +39,12 @@ export class ContentServies {
     db.collection("messages").add(taskObj);
   }
 
-  static  getApp() {
+  static getApp() {
     // work with storage
 
-    const storage  =  getStorage(app);
-  
-    return storage
-   
+    const storage = getStorage(app);
+
+    return storage;
   }
 
   static async GetQuery() {
@@ -58,13 +54,15 @@ export class ContentServies {
   }
 
   static async GetStorage() {
+    const fileListRef = ref(ContentServies.getApp());
 
-    const fileListRef = ref(ContentServies.getApp())
-
-   
     const response = await listAll(fileListRef);
 
-
     return response;
+  }
+  static async DeleteFile(obj) { 
+       deleteObject(obj);
+
+   
   }
 }

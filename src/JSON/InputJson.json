@@ -1,25 +1,20 @@
 [
-    {
-      "nameInput": "Дата заврешения",
-      "placeholder": "Введите дату звершения...",
-      "type": "text",
-      "name": "date"
-      
-     
-    },
-    {
-        "nameInput": "Название задачи",
-        "type":"text",
-        "placeholder": "Введите название задачи...",
-        "name": "task"
-    }
-    ,
-    {
-        "nameInput": "Описание",
-        "type":"text",
-        "placeholder": "Опишите задачу",
-        "name": "description"
-    }
-
-
-  ]
+  {
+    "nameInput": "Дата заврешения",
+    "placeholder": "Введите дату звершения...",
+    "type": "date",
+    "name": "date"
+  },
+  {
+    "nameInput": "Название задачи",
+    "type": "text",
+    "placeholder": "Введите название задачи...",
+    "name": "task"
+  },
+  {
+    "nameInput": "Описание",
+    "type": "text",
+    "placeholder": "Опишите задачу",
+    "name": "description"
+  }
+]

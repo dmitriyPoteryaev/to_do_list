@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { GetTask } from "../../Redux/reducers/GetTask";
 
 const Form = () => {
-
   const [TaskInfo, setTaskInfo] = useState({
     date: "",
     task: "",
@@ -17,9 +16,7 @@ const Form = () => {
   });
 
   const dispatch = useDispatch();
-   //TaskInfo.date.split('').some(elem=>elem==='_')&&
-
-  console.log(TaskInfo.date.split('').some(elem=>elem==='_')||!TaskInfo.task.trim())
+  //TaskInfo.date.split('').some(elem=>elem==='_')&&
 
   // добавление новой задачи
 
@@ -27,7 +24,7 @@ const Form = () => {
 
   const onSubmit = async (data) => {
     const taskObj = {
-      Date: data.date.replace(/[^0-9,".",":"," "]/g, ""),
+      Date: data.date,
       Desctiption: data.description,
       Title: data.task,
       active: "Невыполненна",

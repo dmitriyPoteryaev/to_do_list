@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "../../components/UI/Filter/Select";
+import Select from "../UI/Filter/Select";
 
 const Sorting = ({ filterSelector, setfilterSelector }) => {
   return (
